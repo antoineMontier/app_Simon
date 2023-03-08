@@ -13,6 +13,7 @@ import android.widget.TextView;
 public class MainActivity extends AppCompatActivity {
 
     public Simon s;
+    int level;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,29 +21,54 @@ public class MainActivity extends AppCompatActivity {
         s = new Simon(32);
         s.generate_color_vector(3);
         show_new_colors();
+        level = 1;
     }
 
     public void red_click(View v){
-        if(!s.check_next(1))
+        if(s.check_color(level, 1))
             display_end(v);
+        level++;
+        if(level >= s.getStade()) {
+            s.add_c();
+            show_new_colors();
+            level = 1;
+        }
         System.out.println("red_clicked");
     }
 
     public void green_click(View v){
-        if(!s.check_next(2))
+        if(s.check_color(level, 2))
             display_end(v);
+        level++;
+        if(level >= s.getStade()) {
+            s.add_c();
+            show_new_colors();
+            level = 1;
+        }
         System.out.println("green_clicked");
     }
 
     public void blue_click(View v){
-        if(!s.check_next(3))
+        if(s.check_color(level, 3))
             display_end(v);
+        level++;
+        if(level >= s.getStade()) {
+            s.add_c();
+            show_new_colors();
+            level = 1;
+        }
         System.out.println("blue_clicked");
     }
 
     public void yellow_click(View v){
-        if(!s.check_next(4))
+        if(s.check_color(level, 4))
             display_end(v);
+        level++;
+        if(level >= s.getStade()) {
+            s.add_c();
+            show_new_colors();
+            level = 1;
+        }
         System.out.println("yellow_clicked");
     }
 
@@ -66,37 +92,20 @@ public class MainActivity extends AppCompatActivity {
         int y_clicked = getResources().getColor(R.color.yellow_click);
         int y_unclicked = getResources().getColor(R.color.yellow_unclick);
 
-
-        // Create the ValueAnimator object
-        ValueAnimator red_anim = ValueAnimator.ofObject(new ArgbEvaluator(), r.getSolidColor(), r_clicked);
-        red_anim.setDuration(1000); // duration of the animation in milliseconds
-
-        // Add a listener to the animation
-        red_anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animator) {
-                int color = (int) animator.getAnimatedValue();
-                myButton.setBackgroundColor(color);
-            }
-        });
-
-        // Start the animation
-        colorAnimation.start();
-
         int a;
         while((a=s.nextC()) != 0){
             switch(a){
                 case 1:
-                    r.animate();
+                    r.performClick();
                     break;
                 case 2:
-                    g.animate();
+                    g.performClick();
                     break;
                 case 3:
-                    b.animate();
+                    b.performClick();
                     break;
                 case 4:
-                    y.animate();
+                    y.performClick();
                     break;
             }
             // delay between each click
