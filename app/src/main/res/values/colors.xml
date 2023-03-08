@@ -7,4 +7,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="red_click">#FFFF5050</color>
+    <color name="green_click">#FF50FF50</color>
+    <color name="blue_click">#FF5050FF</color>
+    <color name="yellow_click">#FFFFFF50</color>
+    <color name="red_unclick">#FFFF0000</color>
+    <color name="green_unclick">#FF00FF00</color>
+    <color name="blue_unclick">#FF0000FF</color>
+    <color name="yellow_unclick">#FFFFFF00</color>
 </resources>

@@ -29,6 +29,15 @@ public class Simon {
             colors[i] = 1 + r.nextInt(5);
     }
 
+    public void add_c() {
+        if (stade >= size - 1)
+            return; // not enough room
+        Random r = new Random();
+        colors[stade + 1] = 1 + r.nextInt(5);
+        stade++;
+    }
+
+
     public int nextC(){
         if(stade >= size)
             return 0;
@@ -44,10 +53,10 @@ public class Simon {
         return size;
     }
 
-    public boolean check_next(int color){
-        if(stade >= size - 1)
+    public boolean check_color(int index, int color){
+        if(index >= size - 1)
             return false;
-        return color == colors[stade + 1];
+        return color == colors[index];
     }
 
     public void reset_stade(){

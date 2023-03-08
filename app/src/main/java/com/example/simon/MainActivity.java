@@ -2,6 +2,8 @@ package com.example.simon;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.ArgbEvaluator;
+import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,11 +19,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         s = new Simon(32);
         s.generate_color_vector(3);
-        try {
-            Thread.sleep(5000);
-        }catch(InterruptedException e){
-            e.printStackTrace();
-        }
         show_new_colors();
     }
 
@@ -55,6 +52,37 @@ public class MainActivity extends AppCompatActivity {
         Button g = (Button) findViewById(R.id.b_Green);
         Button b = (Button) findViewById(R.id.b_Blue);
         Button y = (Button) findViewById(R.id.b_Yellow);
+
+        // Define the new colors
+        int r_clicked = getResources().getColor(R.color.red_click);
+        int r_unclicked = getResources().getColor(R.color.red_unclick);
+
+        int g_clicked = getResources().getColor(R.color.green_click);
+        int g_unclicked = getResources().getColor(R.color.green_unclick);
+
+        int b_clicked = getResources().getColor(R.color.blue_click);
+        int b_unclicked = getResources().getColor(R.color.blue_unclick);
+
+        int y_clicked = getResources().getColor(R.color.yellow_click);
+        int y_unclicked = getResources().getColor(R.color.yellow_unclick);
+
+
+        // Create the ValueAnimator object
+        ValueAnimator red_anim = ValueAnimator.ofObject(new ArgbEvaluator(), r.getSolidColor(), r_clicked);
+        red_anim.setDuration(1000); // duration of the animation in milliseconds
+
+        // Add a listener to the animation
+        red_anim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animator) {
+                int color = (int) animator.getAnimatedValue();
+                myButton.setBackgroundColor(color);
+            }
+        });
+
+        // Start the animation
+        colorAnimation.start();
+
         int a;
         while((a=s.nextC()) != 0){
             switch(a){
