@@ -14,14 +14,23 @@ public class MainActivity extends AppCompatActivity {
 
     public Simon s;
     int level;
+
+    boolean onGame;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         s = new Simon(32);
         s.generate_color_vector(3);
-        show_new_colors();
+        // show_new_colors();
+        onGame = false;
         level = 1;
+    }
+
+    public void start_is_clicked(View v){
+        if(onGame)
+           return;
+        show_new_colors();
     }
 
     public void red_click(View v){
@@ -73,7 +82,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void show_new_colors(){
-        s.reset_stade();
         Button r = (Button) findViewById(R.id.b_Red);
         Button g = (Button) findViewById(R.id.b_Green);
         Button b = (Button) findViewById(R.id.b_Blue);
@@ -92,27 +100,46 @@ public class MainActivity extends AppCompatActivity {
         int y_clicked = getResources().getColor(R.color.yellow_click);
         int y_unclicked = getResources().getColor(R.color.yellow_unclick);
 
-        int a;
-        while((a=s.nextC()) != 0){
-            switch(a){
+        int[] color_sucessions = s.get_color_tab();
+        for(int i = 0 ; i < color_sucessions.length ; i ++){ // for each slot of the tab, change the color of the corresponding buton during .25s then change it back to the original color
+            System.out.println(color_sucessions[i]);
+            switch(i) {
                 case 1:
-                    r.performClick();
+                    r.setBackgroundColor(r_clicked);
+                    try {
+                        Thread.sleep(250);
+                    }catch(InterruptedException e){
+                        e.printStackTrace();
+                    }
+                    r.setBackgroundColor(r_unclicked);
                     break;
                 case 2:
-                    g.performClick();
+                    g.setBackgroundColor(g_clicked);
+                    try {
+                        Thread.sleep(250);
+                    }catch(InterruptedException e){
+                        e.printStackTrace();
+                    }
+                    g.setBackgroundColor(g_unclicked);
                     break;
                 case 3:
-                    b.performClick();
+                    b.setBackgroundColor(b_clicked);
+                    try {
+                        Thread.sleep(250);
+                    }catch(InterruptedException e){
+                        e.printStackTrace();
+                    }
+                    b.setBackgroundColor(b_unclicked);
                     break;
                 case 4:
-                    y.performClick();
+                    y.setBackgroundColor(y_clicked);
+                    try {
+                        Thread.sleep(250);
+                    }catch(InterruptedException e){
+                        e.printStackTrace();
+                    }
+                    y.setBackgroundColor(y_unclicked);
                     break;
-            }
-            // delay between each click
-            try {
-                Thread.sleep(250);
-            }catch(InterruptedException e){
-                e.printStackTrace();
             }
 
         }

@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="#FF0000"
         android:onClick="red_click"
+        android:text="R"
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/b_Blue"
         app:layout_constraintEnd_toStartOf="@+id/b_Green"
@@ -28,6 +29,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="#FFFF00"
         android:onClick="yellow_click"
+        android:text="Y"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
@@ -41,6 +43,7 @@
         android:layout_height="wrap_content"
         android:backgroundTint="#00FF00"
         android:onClick="green_click"
+        android:text="G"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -66,6 +69,7 @@
         android:layout_marginBottom="144dp"
         android:backgroundTint="#0000FF"
         android:onClick="blue_click"
+        android:text="B"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -80,5 +84,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.242" />
+
+    <Button
+        android:id="@+id/button_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="start_is_clicked"
+        android:text="Start"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.33" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

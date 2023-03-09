@@ -14,35 +14,35 @@ public class Simon {
 
     public Simon(int max_size){
         size = max_size;
-        stade = 0;
+        stade = 3;
         colors = new int[max_size];
     }
 
     public void generate_color_vector(int number){
-        stade = 0;
+        stade = 3;
         if(number > size)
             return;
         Random r = new Random();
         for(int i = 0 ; i < size ; i++)
                 colors[i] = 0;
         for(int i = 0 ; i < number ; i++)
-            colors[i] = 1 + r.nextInt(5);
+            colors[i] = 1 + r.nextInt(4);
     }
 
     public void add_c() {
         if (stade >= size - 1)
             return; // not enough room
         Random r = new Random();
-        colors[stade + 1] = 1 + r.nextInt(5);
+        colors[stade + 1] = 1 + r.nextInt(4);
         stade++;
     }
 
 
-    public int nextC(){
-        if(stade >= size)
-            return 0;
-        stade++;
-        return colors[stade-1];
+    public int[] get_color_tab(){
+        int res [] = new int[stade];
+        for(int i = 0 ; i < stade ; i++)
+            res[i] = colors[i];
+        return res;
     }
 
     public int getStade(){
